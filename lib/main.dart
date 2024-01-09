@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/components/customListTile.dart';
 import 'package:flutter_application_2/services/api_service.dart';
 
 import 'model/article_model.dart';
@@ -41,10 +42,11 @@ class _HomePageState extends State<Homepage> {
           builder:
               (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
             if (snapshot.hasData) {
-              // ignore: unused_local_variable
               List<Article>? articles = snapshot.data;
-              return Center(
-                child: Text("Succes !"),
+              return ListView.builder(
+                itemCount: articles!.length,
+                itemBuilder: (context, index) =>
+                    customListTile(articles[index], context),
               );
             }
             return Center(
